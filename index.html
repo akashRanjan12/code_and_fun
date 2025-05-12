@@ -1,0 +1,174 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        overflow-x: hidden;
+        background-color: rgb(46, 3, 3);
+      }
+      .video-container {
+        z-index: 1;
+        display: none;
+        color: whitesmoke;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        #video {
+          width: 100%;
+          height: 80svh;
+          object-fit: cover;
+        }
+        P {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+      }
+      .video-container-01 {
+        display: none;
+        color: whitesmoke;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        #vid {
+          width: 100%;
+          height: 100svh;
+          object-fit: cover;
+        }
+        P {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video-container-01">
+      <video id="vid" autoplay>
+        <source
+          src="WhatsApp Video 2025-05-12 at 12.05.06_56e2d6aa.mp4"
+          type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-container">
+      <video id="video" autoplay></video>
+      <p>Le bhai apni aukaat dekh LOL🤣🤣🤣.</p>
+    </div>
+    <script>
+      const video = document.getElementById("video");
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+          video.srcObject = stream;
+        })
+        .catch((error) => {
+          console.error("Error accessing camera: ", error);
+        });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camera After Video</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        overflow-x: hidden;
+        background-color: rgb(0, 0, 0);
+      }
+      .video-container,
+      .video-container-01 {
+        color: whitesmoke;
+        width: 100%;
+        height: auto;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      }
+
+      #video {
+        width: 100%;
+        height: 80svh;
+        object-fit: cover;
+      }
+
+      #vid {
+        width: 100%;
+        height: 100svh;
+        object-fit: cover;
+      }
+
+      p {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Initial video that plays first -->
+    <div class="video-container-01" id="intro-container">
+      <video id="vid" autoplay controls>
+        <source
+          src="WhatsApp Video 2025-05-12 at 12.05.06_56e2d6aa.mp4"
+          type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Camera section that shows after video ends -->
+    <div class="video-container" id="camera-container">
+      <video id="video" autoplay></video>
+      <p>Le bhai apni aukaat dekh LOL🤣🤣🤣.</p>
+    </div>
+
+    <script>
+      const videoElement = document.getElementById("video");
+      const introVideo = document.getElementById("vid");
+      const introContainer = document.getElementById("intro-container");
+      const cameraContainer = document.getElementById("camera-container");
+
+      // Show the intro video container
+      introContainer.style.display = "flex";
+
+      // When intro video ends
+      introVideo.addEventListener("ended", () => {
+        introContainer.style.display = "none"; // Hide intro video
+        cameraContainer.style.display = "flex"; // Show camera view
+
+        // Start camera
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: false })
+          .then((stream) => {
+            videoElement.srcObject = stream;
+          })
+          .catch((error) => {
+            console.error("Error accessing camera: ", error);
+          });
+      });
+    </script>
+  </body>
+</html>
